@@ -19,27 +19,28 @@ export class AuthGuard {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {
+    state: RouterStateSnapshot) {      
       const redirectFromAccount = route.queryParams['redirectFromAccount'];
       if (this.oauthService.hasValidAccessToken()) {
         return true;
       } else {
         debugger
-        // if(!redirectFromAccount || redirectFromAccount !== 'true'){
-        //   // if not from account.predigle.com
-        //   this.redirectToAccount();
-        //   return false;
-        // }else{ 
-          // if from account.predigle.com
+        if(!redirectFromAccount || redirectFromAccount !== 'true'){
+          // if not from account.predigle.com
+          this.redirectToAccount();
+          return false;
+        }else{ 
           this.oauthService.loadDiscoveryDocumentAndLogin(); 
-          this.oauthService.initImplicitFlow();
+          // this.oauthService.initImplicitFlow();
+          // if from account.predigle.com
           return true;
-        // }
+        }
       }
   }
 
   
   redirectToAccount(): void {
+    this.oauthService.logOut();
     const externalUrl = 'http://localhost:5000/login?param1=http://localhost:4200';
     window.location.href = externalUrl;
   }
