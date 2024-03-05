@@ -44,7 +44,6 @@ private configureOAuth() {
 
   // historyCleanupOff
   // triggerAuthorizationResultEvent
-
-  this.oauthService.loadDiscoveryDocumentAndLogin();
+    // this.oauthService.loadDiscoveryDocumentAndLogin(); 
 }
 }

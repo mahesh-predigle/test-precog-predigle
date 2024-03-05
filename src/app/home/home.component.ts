@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,15 @@ export class HomeComponent {
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private _http: HttpClient) {
+    private _http: HttpClient,
+    private oauthService: OAuthService
+     ) {
       this.activeRoute.fragment.subscribe((fragment:any)  => {
         // debugger
         // this.param1 = params['param1'];
         const params = new URLSearchParams(fragment);
       this.idToken = params.get('id_token');
-      console.log('id_token:', this.idToken);
+      // console.log('id_token:', this.idToken);
              
       });
     }
@@ -45,5 +48,12 @@ export class HomeComponent {
         this.message = err?.message ?err?.message: 'Error';
       }
     })
+  }
+
+  handleLogOut(): void {
+    this.oauthService.logOut();
+    // Optional: Redirect to a logout component
+    const externalUrl = 'http://localhost:5000/login?param1=http://localhost:4200';
+    window.location.href = externalUrl;
   }
 }
