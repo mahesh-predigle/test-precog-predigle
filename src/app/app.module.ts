@@ -40,10 +40,16 @@ private configureOAuth() {
     responseType: 'token id_token',
     scope: 'openid profile email',
     showDebugInformation: true,
+    // silentRefreshRedirectUri: window.location.origin,
+    // useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
+    // silentRefreshTimeout: 5000, // For faster testing
+    // timeoutFactor: 0.25, // For faster testing
+    // sessionChecksEnabled: true,
   });
 
   // historyCleanupOff
   // triggerAuthorizationResultEvent
     // this.oauthService.loadDiscoveryDocumentAndLogin(); 
+    this.oauthService.logoutUrl = "https://www.google.com/accounts/Logout";
 }
 }

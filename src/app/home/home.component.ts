@@ -52,8 +52,9 @@ export class HomeComponent {
 
   handleLogOut(): void {
     this.oauthService.logOut();
+    // this.oauthService.revokeTokenAndLogout();
     // Optional: Redirect to a logout component
-    const externalUrl = 'http://localhost:5000/login?param1=http://localhost:4200';
+    const externalUrl = 'http://localhost:5000/login?param1=http://localhost:4200&logout=true';
     window.location.href = externalUrl;
   }
 }
