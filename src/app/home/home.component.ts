@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private _http: HttpClient,
-    private oauthService: OAuthService
+    private oauthService: OAuthService,
+    private authService: AuthService
      ) {
       this.activeRoute.fragment.subscribe((fragment:any)  => {
         // debugger

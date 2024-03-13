@@ -22,7 +22,7 @@ export class AuthGuard {
     state: RouterStateSnapshot) {
     const redirectFromAccount = route.queryParams['redirectFromAccount'];
     // this.oauthService.loadDiscoveryDocumentAndLogin();
-    this.oauthService.initImplicitFlow();
+    // this.oauthService.initImplicitFlow();
     if (this.oauthService.hasValidAccessToken()) {
       return true;
     } else {
