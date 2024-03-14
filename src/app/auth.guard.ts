@@ -22,7 +22,14 @@ export class AuthGuard {
     state: RouterStateSnapshot) {
     const redirectFromAccount = route.queryParams['redirectFromAccount'];
     // this.oauthService.loadDiscoveryDocumentAndLogin();
-    // this.oauthService.initImplicitFlow();
+    // this.oauthService.initImplicitFlow()
+    const isReloaded = localStorage.getItem('isReloaded') ? JSON.parse(localStorage.getItem('isReloaded')!) : false;
+      if(isReloaded){
+        this.redirectToAccount();
+        localStorage.removeItem('isReloaded');
+        return false;
+      }
+    localStorage.setItem('isReloaded', JSON.stringify(true));
     if (this.oauthService.hasValidAccessToken()) {
       return true;
     } else {

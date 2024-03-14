@@ -11,7 +11,7 @@ export const authConfig: AuthConfig = {
     scope: 'openid profile email',
     showDebugInformation: true, // Also requires enabling "Verbose" level in devtools
     useSilentRefresh: true, // Needed for Code Flow to suggest using iframe-based refreshes
-    silentRefreshTimeout: 5000, // For faster testing
+    silentRefreshTimeout: 1000, // For faster testing
     timeoutFactor: 0.25, // For faster testing
     sessionChecksEnabled: true,
     clearHashAfterLogin: false, // https://github.com/manfredsteyer/angular-oauth2-oidc/issues/457#issuecomment-431807040,
